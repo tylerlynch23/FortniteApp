@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace FortniteApp
@@ -17,11 +18,17 @@ namespace FortniteApp
             string username = Console.ReadLine();
 
             Console.WriteLine("Awesome " + username + ", where would you like to land?");
-            foreach(Map map in InitializeMapsList.mapList)
+            Console.WriteLine("------------------------------------------------");
+            foreach(Type map in InitializeMapsList.derivedMapTypes)
             {
-                Console.WriteLine(map);
+                InitializeMapsList.mapList.Add(map.Name);
+                string currentMapName = Regex.Replace(map.Name, "([a-zA-Z])_?([A-Z])", "$1 $2");
+                Console.WriteLine(currentMapName);
+                
+
             }
-            Console.ReadKey();
+            Console.WriteLine("------------------------------------------------");
+            string playerLandingSpot = Console.ReadLine();
 
         
 

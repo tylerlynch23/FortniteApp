@@ -10,22 +10,26 @@ namespace FortniteApp
 {
     static class InitializeMapsList
     {
-        public static List<Map> mapList;
+        public static List<string> mapList;
+        public static Type[] derivedMapTypes;
 
         static InitializeMapsList()
         {
-            mapList = new List<Map>();
+            mapList = new List<string>();
         }
 
         public static void PopulateMapList()
         {
             //Loads all map types into list
             Type mapType = typeof(Map);          
-            Type[] types = Assembly.GetAssembly(mapType).GetTypes();
-            Type[] possible = (from Type type in types
+            Type[] mapTypes = Assembly.GetAssembly(mapType).GetTypes();
+            derivedMapTypes = (from Type type in mapTypes
                                where type.IsSubclassOf(typeof(Map))
-                               select type).ToArray();
+                               select type).ToArray();           
+            
         }
+
+
 
     }
     
