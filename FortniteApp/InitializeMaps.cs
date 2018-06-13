@@ -8,25 +8,24 @@ using System.Threading.Tasks;
 
 namespace FortniteApp
 {
-    static class InitializeMapsList
+    public class InitializeMapsList
     {
-        public static List<string> mapList;
-        public static Type[] derivedMapTypes;
+        public List<string> mapList;
+        public Type[] derivedMapTypes;
 
-        static InitializeMapsList()
+        public InitializeMapsList()
         {
             mapList = new List<string>();
         }
 
-        public static void PopulateMapList()
+        public void PopulateMapList()
         {
             //Loads all map types into list
             Type mapType = typeof(Map);          
             Type[] mapTypes = Assembly.GetAssembly(mapType).GetTypes();
             derivedMapTypes = (from Type type in mapTypes
                                where type.IsSubclassOf(typeof(Map))
-                               select type).ToArray();           
-            
+                               select type).ToArray();
         }
 
 

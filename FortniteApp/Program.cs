@@ -8,10 +8,12 @@ namespace FortniteApp
 {
     class Program
     {
+        public static InitializeMapsList initializeMapsList = new InitializeMapsList();
+        public static StoryDriver storyDriver = new StoryDriver();
+
         static void Main(string[] args)
         {
-            StoryDriver storyDriver = new StoryDriver();
-            InitializeMapsList.PopulateMapList();
+            initializeMapsList.PopulateMapList();
             storyDriver.MainStoryLoop();
         }
     }
