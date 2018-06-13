@@ -10,7 +10,9 @@ namespace FortniteApp
     {
         static void Main(string[] args)
         {
-            StatisticTracker statTracker = new StatisticTracker();
+            StoryDriver storyDriver = new StoryDriver();
+            InitializeMapsList.PopulateMapList();
+            storyDriver.MainStoryLoop();
         }
     }
 }
