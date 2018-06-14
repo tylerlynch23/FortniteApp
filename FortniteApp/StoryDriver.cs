@@ -12,21 +12,24 @@ namespace FortniteApp
     {
         private string UsersCurrentLocation;
         private List<string> LocationList = new List<string>();
+        Player currentPlayer = new Player();
+        Dictionary<Type, string> LocationTypeStringDict = new Dictionary<Type, string>();
 
         public void MainStoryLoop()
         {
             //Introduction and Username input
             Console.WriteLine("Welcome to Fortnite Text-Based Adventure! What is your username?");
-            string username = Console.ReadLine();
-            Console.WriteLine("Awesome " + username + ", where would you like to land?");
+            currentPlayer.Name = Console.ReadLine();
+            Console.WriteLine("Awesome " + currentPlayer.Name + ", where would you like to land?");
             Console.WriteLine("------------------------------------------------");
             //List of all maps is listed
-            foreach (Type map in Program.initializeMapsList.derivedMapTypes)
+            foreach (Type location in Program.initializeMapsList.derivedMapTypes)
             {
+                Type mapType = Type.GetType("FortniteMaps." + location.Name + ", FortniteMaps, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
                 //Map names WITHOUT spaces is added to static mapList
-                Program.initializeMapsList.mapList.Add(map.Name);
+                Program.initializeMapsList.mapList.Add(location.Name);
                 //Regex used to add a space inbetween the words (delimeted by lowercase and uppercase shift)
-                string currentLocationName = Regex.Replace(map.Name, "([a-zA-Z])_?([A-Z])", "$1 $2");
+                string currentLocationName = Regex.Replace(location.Name, "([a-zA-Z])_?([A-Z])", "$1 $2");
                 //Adding this edited map name to our member array for use in the rest of the class
                 LocationList.Add(currentLocationName);
                 Console.WriteLine(currentLocationName);
@@ -48,7 +51,7 @@ namespace FortniteApp
                     else
                     {
                         throw new Exception();
-                    }                    
+                    }
                 }
                 catch
                 {

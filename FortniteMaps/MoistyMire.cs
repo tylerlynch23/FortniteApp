@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FortniteMaps
 {
-    class MoistyMire : Map
+    public class MoistyMire : Map
     {
         public override string MapName
         {
